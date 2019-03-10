@@ -1,10 +1,13 @@
 import React from 'react';
+import { UserContext } from './index';
 
 const App = () => {
   return (
-    <div>
-      <p>I am the App component.</p>
-    </div>
+    <>
+      <UserContext.Consumer>
+        {value => <div>Hello, {value}</div>}
+      </UserContext.Consumer>
+    </>
   );
 };
 
