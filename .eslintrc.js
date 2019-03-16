@@ -33,7 +33,7 @@ module.exports = {
     'max-len': 'off',
     'no-restricted-syntax': 'off',
     'no-underscore-dangle': 'off',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'error',
     'arrow-parens': 'off',
     'operator-linebreak': 'off',
     // React-specific rules: delete if not using React

@@ -1,5 +1,6 @@
-import React, { useContext, useReducer } from 'react';
+// import React, { useContext, useReducer } from 'react';
 import ReactDOM from 'react-dom';
+/* eslint-disable-next-line no-unused-vars */
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

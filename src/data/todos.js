@@ -15,3 +15,5 @@ const todos = [
     complete: false,
   },
 ];
+
+export default todos;
