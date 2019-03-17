@@ -5,7 +5,7 @@ const reducer = (state, action) => {
       const newTodos = state.todos.map(todo =>
         todo.id === action.id ? { ...todo, complete: !todo.complete } : todo,
       );
-
+      /* eslint-enable no-confusing-arrow */
       return Object.assign({}, state, {
         todos: newTodos,
       });

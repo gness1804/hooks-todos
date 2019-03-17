@@ -28,7 +28,12 @@ const TodoList = () => {
             key={todo.id}
             className="bg-orange-dark border-black border-dashed border-2 my-2 py-4 flex items-center"
           >
-            <span className="cursor-pointer flex-1 ml-12">{todo.text}</span>
+            <span
+              className={`cursor-pointer flex-1 ml-12 ${todo.complete &&
+                'line-through text-grey-darkest'}`}
+            >
+              {todo.text}
+            </span>
             <button>
               <img
                 src="https://icon.now.sh/edit/0050c5"
