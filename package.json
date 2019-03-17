@@ -16,12 +16,13 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run clean && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/",
-    "prettier": "prettier --write src/**/**"
+    "prettier": "prettier --write src/**/**",
+    "clean": "npm cache verify"
   },
   "eslintConfig": {
     "extends": "react-app"

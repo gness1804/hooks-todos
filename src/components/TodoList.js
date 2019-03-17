@@ -1,11 +1,22 @@
 /* eslint-disable-next-line no-unused-vars */
 import React, { useContext } from 'react';
 import TodosContext from '../context';
+import { toggleAction, deleteAction } from '../actions';
 
 const TodoList = () => {
-  const { /* dispatch, */ modifiedState: state } = useContext(TodosContext);
+  const { dispatch, modifiedState: state } = useContext(TodosContext);
   const { todos } = state;
   const title = todos.length ? `${todos.length} Todos` : 'No Todos Yet!';
+
+  const toggleTodo = id => ({
+    ...toggleAction,
+    id,
+  });
+
+  const deleteTodo = id => ({
+    ...deleteAction,
+    id,
+  });
 
   return (
     <div className="container mx-auto max-w-md text-center font-mono">
@@ -24,12 +35,15 @@ const TodoList = () => {
                 className="h-6"
               />
             </button>
-            <button>
+            <button onClick={() => dispatch(deleteTodo(todo.id))}>
               <img
                 src="https://icon.now.sh/delete/8b0000"
                 alt="Delete Icon"
                 className="h-6"
               />
+            </button>
+            <button onClick={() => dispatch(toggleTodo(todo.id))}>
+              Toggle
             </button>
           </li>
         ))}
