@@ -3,20 +3,24 @@ import React, { useContext } from 'react';
 import TodosContext from '../context';
 
 const TodoList = () => {
-  // TODO: re-add dispatch to destructring assignment below
-  const { modifiedState: state } = useContext(TodosContext);
+  const { /* dispatch, */ modifiedState: state } = useContext(TodosContext);
   const { todos } = state;
+  const title = todos.length ? `${todos.length} Todos` : 'No Todos Yet!';
 
   return (
-    <>
-      <ul>
+    <div className="container mx-auto max-w-md text-center font-mono">
+      <h1 className="text-bold">{title}</h1>
+      <ul className="list-reset text-white p-0">
         {todos.map(todo => (
-          <li key={todo.id}>
-            <span>{todo.text}</span>
+          <li
+            key={todo.id}
+            className="bg-orange-dark border-black border-dashed border-2 my-2 py-4"
+          >
+            <span className="cursor-pointer">{todo.text}</span>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
