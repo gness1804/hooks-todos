@@ -44,6 +44,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/jsx-no-bind': 'off',
     'class-methods-use-this': 'off',
+    'react/react-in-jsx/scope': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
