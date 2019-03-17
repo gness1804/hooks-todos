@@ -8,6 +8,7 @@ const TodoList = () => {
   const { todos } = state;
   const title = todos.length ? `${todos.length} Todos` : 'No Todos Yet!';
 
+  // action creators
   const toggleTodo = id => ({
     ...toggleAction,
     id,
@@ -43,7 +44,11 @@ const TodoList = () => {
               />
             </button>
             <button onClick={() => dispatch(toggleTodo(todo.id))}>
-              Toggle
+              <img
+                src="https://icon.now.sh/check/dedede"
+                alt="Toggle Icon"
+                className="h-6"
+              />
             </button>
           </li>
         ))}
