@@ -36,6 +36,8 @@ module.exports = {
     'no-unused-vars': 'error',
     'arrow-parens': 'off',
     'operator-linebreak': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'function-paren-newline': 'off',
     // React-specific rules: delete if not using React
     'react/prefer-stateless-function': 'off',
     'react/jsx-filename-extension': 'off',

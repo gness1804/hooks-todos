@@ -1,16 +1,10 @@
 const reducer = (state, action) => {
   switch (action.type) {
     case 'TOGGLE_TODO': {
-      const targetTodo = state.todos.filter(todo => todo.id === action.id)[0];
-      const indexOfTarget = state.todos.indexOf(targetTodo);
-
-      const newTodos = [
-        ...state.todos.slice(0, indexOfTarget),
-        Object.assign({}, targetTodo, {
-          complete: !targetTodo.complete,
-        }),
-        ...state.todos.slice(indexOfTarget + 1),
-      ];
+      /* eslint-disable no-confusing-arrow */
+      const newTodos = state.todos.map(todo =>
+        todo.id === action.id ? { ...todo, complete: !todo.complete } : todo,
+      );
 
       return Object.assign({}, state, {
         todos: newTodos,
