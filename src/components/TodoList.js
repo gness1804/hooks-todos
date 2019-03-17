@@ -14,9 +14,23 @@ const TodoList = () => {
         {todos.map(todo => (
           <li
             key={todo.id}
-            className="bg-orange-dark border-black border-dashed border-2 my-2 py-4"
+            className="bg-orange-dark border-black border-dashed border-2 my-2 py-4 flex items-center"
           >
-            <span className="cursor-pointer">{todo.text}</span>
+            <span className="cursor-pointer flex-1 ml-12">{todo.text}</span>
+            <button>
+              <img
+                src="https://icon.now.sh/edit/0050c5"
+                alt="Edit Icon"
+                className="h-6"
+              />
+            </button>
+            <button>
+              <img
+                src="https://icon.now.sh/delete/8b0000"
+                alt="Delete Icon"
+                className="h-6"
+              />
+            </button>
           </li>
         ))}
       </ul>
