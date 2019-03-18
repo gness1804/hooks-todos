@@ -8,4 +8,9 @@ const deleteAction = {
   id: undefined,
 };
 
-export { toggleAction, deleteAction };
+const addAction = {
+  type: 'ADD_TODO',
+  todo: {},
+};
+
+export { toggleAction, deleteAction, addAction };

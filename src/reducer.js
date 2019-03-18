@@ -16,6 +16,12 @@ const reducer = (state, action) => {
         todos: filteredTodos,
       });
     }
+    case 'ADD_TODO': {
+      const newTodos = [...state.todos, action.todo];
+      return Object.assign({}, state, {
+        todos: newTodos,
+      });
+    }
     default:
       return state;
   }
