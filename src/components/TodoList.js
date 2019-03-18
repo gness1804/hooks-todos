@@ -1,12 +1,10 @@
 /* eslint-disable-next-line no-unused-vars */
 import React, { useContext, useState } from 'react';
-import uuid from 'uuid';
 import TodosContext from '../context';
-import { toggleAction, deleteAction, addAction } from '../actions';
+import { toggleAction, deleteAction } from '../actions';
 
 const TodoList = () => {
   const { dispatch, modifiedState: state } = useContext(TodosContext);
-  const [text, setText] = useState('');
 
   const { todos } = state;
   const title = todos.length ? `${todos.length} Todos` : 'No Todos Yet!';
@@ -21,30 +19,6 @@ const TodoList = () => {
     ...deleteAction,
     id,
   });
-
-  const addTodo = () => ({
-    ...addAction,
-    todo: {
-      id: uuid.v4(),
-      text,
-      complete: false,
-    },
-  });
-
-  // regular methods
-  const handleOnInputChange = event => {
-    setText(event.target.value);
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    if (!text) {
-      alert('Error: you must enter a description for your new todo.');
-      return;
-    }
-    dispatch(addTodo());
-    setText('');
-  };
 
   const listElem = (
     <ul className="list-reset text-white p-0">
@@ -89,16 +63,6 @@ const TodoList = () => {
     <div className="container mx-auto max-w-md text-center font-mono">
       <h1 className="text-bold">{title}</h1>
       {listElem}
-      <form onSubmit={handleSubmit}>
-        <h2>Create New Todo</h2>
-        <input
-          type="text"
-          placeholder="Description"
-          onChange={handleOnInputChange}
-          value={text}
-        />
-        <button type="submit">Submit</button>
-      </form>
     </div>
   );
 };
