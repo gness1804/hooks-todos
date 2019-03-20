@@ -13,4 +13,11 @@ const addAction = {
   todo: {},
 };
 
-export { toggleAction, deleteAction, addAction };
+const editAction = {
+  type: 'EDIT_TODO',
+  todo: {},
+};
+
+export {
+  toggleAction, deleteAction, addAction, editAction,
+};

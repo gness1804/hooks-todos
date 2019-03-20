@@ -5,7 +5,6 @@ const reducer = (state, action) => {
       const newTodos = state.todos.map(todo =>
         todo.id === action.id ? { ...todo, complete: !todo.complete } : todo,
       );
-      /* eslint-enable no-confusing-arrow */
       return Object.assign({}, state, {
         todos: newTodos,
       });
@@ -22,8 +21,17 @@ const reducer = (state, action) => {
         todos: newTodos,
       });
     }
+    case 'EDIT_TODO': {
+      const newTodos = state.todos.map(todo =>
+        todo.id === action.todo.id ? { ...todo, text: action.todo.text } : todo,
+      );
+      return Object.assign({}, state, {
+        todos: newTodos,
+      });
+    }
     default:
       return state;
+    /* eslint-enable no-confusing-arrow */
   }
 };
 
