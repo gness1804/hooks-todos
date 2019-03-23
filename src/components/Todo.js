@@ -63,13 +63,13 @@ const Todo = ({ todo }) => {
           {todo.text}
         </span>
       ) : (
-          <input
-            type="text"
-            value={text}
-            onChange={handleOnInputChange}
-            className="todo-text-input"
-          />
-        )}
+        <input
+          type="text"
+          value={text}
+          onChange={handleOnInputChange}
+          className="todo-text-input"
+        />
+      )}
       <button onClick={toggleIsEditing}>
         <img
           src="https://icon.now.sh/edit/0050c5"
