@@ -1,22 +1,35 @@
 /* eslint-disable-next-line no-unused-vars */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import uuid from 'uuid';
 import TodosContext from '../context';
-import { addAction } from '../actions';
+import { addAction, editAction } from '../actions';
 
 const TodoForm = () => {
-  const { dispatch } = useContext(TodosContext);
-  const [text, setText] = useState('');
+  const { dispatch, modifiedState: state } = useContext(TodosContext);
+  const [text, setText] = useState(state.currentTodo.text || '');
+
+  useEffect(() => {
+    setText(state.currentTodo.text);
+  }, [state.currentTodo]);
 
   // action creators
-  const addTodo = () => ({
-    ...addAction,
-    todo: {
-      id: uuid.v4(),
-      text,
-      complete: false,
-    },
-  });
+  const addTodo = () => {
+    if (Object.keys(state.currentTodo).length) {
+      return {
+        ...editAction,
+        text,
+        id: state.currentTodo.id,
+      };
+    }
+    return {
+      ...addAction,
+      todo: {
+        id: uuid.v4(),
+        text,
+        complete: false,
+      },
+    };
+  };
 
   // regular methods
   const handleOnInputChange = event => {

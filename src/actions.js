@@ -15,9 +15,15 @@ const addAction = {
 
 const editAction = {
   type: 'EDIT_TODO',
+  text: '',
+  id: undefined,
+};
+
+const assignCurrentTodoAction = {
+  type: 'ASSIGN_CURR_TODO',
   todo: {},
 };
 
 export {
-  toggleAction, deleteAction, addAction, editAction,
+  toggleAction, deleteAction, addAction, editAction, assignCurrentTodoAction,
 };

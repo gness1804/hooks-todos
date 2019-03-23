@@ -23,10 +23,15 @@ const reducer = (state, action) => {
     }
     case 'EDIT_TODO': {
       const newTodos = state.todos.map(todo =>
-        todo.id === action.todo.id ? { ...todo, text: action.todo.text } : todo,
+        todo.id === action.id ? { ...todo, text: action.text } : todo,
       );
       return Object.assign({}, state, {
         todos: newTodos,
+      });
+    }
+    case 'ASSIGN_CURR_TODO': {
+      return Object.assign({}, state, {
+        currentTodo: action.todo,
       });
     }
     default:
