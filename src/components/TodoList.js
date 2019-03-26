@@ -5,7 +5,7 @@ import TodosContext from '../context';
 import Todo from './Todo';
 
 const TodoList = () => {
-  const { modifiedState: state } = useContext(TodosContext);
+  const { state } = useContext(TodosContext);
 
   const { todos } = state;
   const title = todos.length ? `${todos.length} Todos` : 'No Todos Yet!';

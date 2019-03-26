@@ -9,10 +9,10 @@ import TodoForm from './components/TodoForm';
 
 const App = () => {
   const initState = useContext(TodosContext);
-  const [modifiedState, dispatch] = useReducer(reducer, initState);
+  const [state, dispatch] = useReducer(reducer, initState);
 
   return (
-    <TodosContext.Provider value={{ modifiedState, dispatch }}>
+    <TodosContext.Provider value={{ state, dispatch }}>
       <TodoList />
       <TodoForm />
     </TodosContext.Provider>

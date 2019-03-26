@@ -5,20 +5,22 @@ import TodosContext from '../context';
 import { addAction, editAction } from '../actions';
 
 const TodoForm = () => {
-  const { dispatch, modifiedState: state } = useContext(TodosContext);
-  const [text, setText] = useState(state.currentTodo.text || '');
+  const { dispatch, state: { currentTodo } } = useContext(TodosContext);
+  const [text, setText] = useState(currentTodo.text || '');
 
   useEffect(() => {
-    setText(state.currentTodo.text);
-  }, [state.currentTodo]);
+    if (currentTodo.text) {
+      setText(currentTodo.text);
+    }
+  }, [currentTodo.id]);
 
   // action creators
   const addTodo = () => {
-    if (Object.keys(state.currentTodo).length) {
+    if (Object.keys(currentTodo).length) {
       return {
         ...editAction,
         text,
-        id: state.currentTodo.id,
+        id: currentTodo.id,
       };
     }
     return {
