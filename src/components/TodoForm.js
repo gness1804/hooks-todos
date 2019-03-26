@@ -5,7 +5,10 @@ import TodosContext from '../context';
 import { addAction, editAction } from '../actions';
 
 const TodoForm = () => {
-  const { dispatch, state: { currentTodo } } = useContext(TodosContext);
+  const {
+    dispatch,
+    state: { currentTodo },
+  } = useContext(TodosContext);
   const [text, setText] = useState(currentTodo.text || '');
 
   useEffect(() => {
@@ -15,23 +18,20 @@ const TodoForm = () => {
   }, [currentTodo.id]);
 
   // action creators
-  const addTodo = () => {
-    if (Object.keys(currentTodo).length) {
-      return {
-        ...editAction,
-        text,
-        id: currentTodo.id,
-      };
-    }
-    return {
-      ...addAction,
-      todo: {
-        id: uuid.v4(),
-        text,
-        complete: false,
-      },
-    };
-  };
+  const addTodo = () => ({
+    ...addAction,
+    todo: {
+      id: uuid.v4(),
+      text,
+      complete: false,
+    },
+  });
+
+  const editTodo = () => ({
+    ...editAction,
+    text,
+    id: currentTodo.id,
+  });
 
   // regular methods
   const handleOnInputChange = event => {
@@ -42,6 +42,11 @@ const TodoForm = () => {
     event.preventDefault();
     if (!text) {
       alert('Error: you must enter a description for your new todo.');
+      return;
+    }
+    if (Object.keys(currentTodo).length) {
+      dispatch(editTodo());
+      setText('');
       return;
     }
     dispatch(addTodo());

@@ -27,6 +27,7 @@ const reducer = (state, action) => {
       );
       return Object.assign({}, state, {
         todos: newTodos,
+        currentTodo: {},
       });
     }
     case 'ASSIGN_CURR_TODO': {
