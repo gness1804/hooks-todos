@@ -13,6 +13,7 @@ const reducer = (state, action) => {
       const filteredTodos = state.todos.filter(todo => todo.id !== action.id);
       return Object.assign({}, state, {
         todos: filteredTodos,
+        currentTodo: {},
       });
     }
     case 'ADD_TODO': {

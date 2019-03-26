@@ -7,7 +7,7 @@ import { addAction, editAction } from '../actions';
 const TodoForm = () => {
   const {
     dispatch,
-    state: { currentTodo },
+    state: { currentTodo, todos },
   } = useContext(TodosContext);
   const [text, setText] = useState(currentTodo.text || '');
 
@@ -16,6 +16,12 @@ const TodoForm = () => {
       setText(currentTodo.text);
     }
   }, [currentTodo.id]);
+
+  useEffect(() => {
+    if (!currentTodo.text) {
+      setText('');
+    }
+  }, [todos]);
 
   // action creators
   const addTodo = () => ({
