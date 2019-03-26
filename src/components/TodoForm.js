@@ -46,10 +46,9 @@ const TodoForm = () => {
     }
     if (Object.keys(currentTodo).length) {
       dispatch(editTodo());
-      setText('');
-      return;
+    } else {
+      dispatch(addTodo());
     }
-    dispatch(addTodo());
     setText('');
   };
 
