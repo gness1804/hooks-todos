@@ -24,6 +24,11 @@ const assignCurrentTodoAction = {
   todo: {},
 };
 
+// prettier-ignore
 export {
-  toggleAction, deleteAction, addAction, editAction, assignCurrentTodoAction,
+  toggleAction,
+  deleteAction,
+  addAction,
+  editAction,
+  assignCurrentTodoAction,
 };

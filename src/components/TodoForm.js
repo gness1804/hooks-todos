@@ -44,10 +44,24 @@ const TodoForm = () => {
     setText(event.target.value);
   };
 
+  const todoIsADupe = () => {
+    for (const todo of todos) {
+      if (todo.text.toLowerCase() === text.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
     if (!text) {
       alert('Error: you must enter a description for your new todo.');
+      return;
+    }
+    // check if todo.text matches any existing text of todos
+    if (todoIsADupe()) {
+      alert('Oops! You cannot duplicate todos. Please try again.');
       return;
     }
     if (Object.keys(currentTodo).length) {
