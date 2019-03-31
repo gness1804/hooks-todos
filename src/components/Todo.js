@@ -35,6 +35,15 @@ const Todo = ({ todo }) => {
     dispatch(deleteTodo(id));
   };
 
+  const toggleTodoHandler = async (id, complete) => {
+    await axios.put(`${todosEndpoint}/${id}`, {
+      ...todo,
+      id,
+      complete: !complete,
+    });
+    dispatch(toggleTodo(id));
+  };
+
   return (
     <li
       key={todo.id}
@@ -60,7 +69,7 @@ const Todo = ({ todo }) => {
           className="h-6"
         />
       </button>
-      <button onClick={() => dispatch(toggleTodo(todo.id))}>
+      <button onClick={() => toggleTodoHandler(todo.id, todo.complete)}>
         <img
           src="https://icon.now.sh/check/dedede"
           alt="Toggle Icon"
