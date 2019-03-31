@@ -61,19 +61,26 @@ const TodoForm = () => {
     dispatch(addTodo(response.data));
   };
 
+  const handleEditTodo = async () => {
+    await axios.patch(`${todosEndpoint}/${currentTodo.id}`, {
+      text,
+    });
+    dispatch(editTodo());
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
     if (!text) {
       alert('Error: you must enter a description for your new todo.');
       return;
     }
-    // check if todo.text matches any existing text of todos
+
     if (todoIsADupe()) {
       alert('Oops! You cannot duplicate todos. Please try again.');
       return;
     }
     if (Object.keys(currentTodo).length) {
-      dispatch(editTodo());
+      handleEditTodo();
     } else {
       handleAddTodo();
     }
