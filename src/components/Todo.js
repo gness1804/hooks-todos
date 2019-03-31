@@ -1,5 +1,6 @@
 /* eslint-disable-next-line no-unused-vars */
 import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 import TodosContext from '../context';
 // prettier-ignore
 import {
@@ -27,6 +28,13 @@ const Todo = ({ todo }) => {
     todo: _todo,
   });
 
+  // regular methods
+  const deleteTodoHandler = async id => {
+    const endpoint = 'https://hooks-api.grahamnessler.now.sh/data.json';
+    await axios.delete(`${endpoint}/${id}`);
+    dispatch(deleteTodo(id));
+  };
+
   return (
     <li
       key={todo.id}
@@ -45,7 +53,7 @@ const Todo = ({ todo }) => {
           className="h-6"
         />
       </button>
-      <button onClick={() => dispatch(deleteTodo(todo.id))}>
+      <button onClick={() => deleteTodoHandler(todo.id)}>
         <img
           src="https://icon.now.sh/delete/8b0000"
           alt="Delete Icon"

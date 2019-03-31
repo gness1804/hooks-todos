@@ -13,12 +13,11 @@ import TodoList from './components/TodoList';
 /* eslint-disable-next-line no-unused-vars */
 import TodoForm from './components/TodoForm';
 import { getTodosFromAPIAction } from './actions';
+import { todosEndpoint } from './api';
 
 const App = () => {
   const initState = useContext(TodosContext);
   const [state, dispatch] = useReducer(reducer, initState);
-
-  const endpoint = 'https://hooks-api.grahamnessler.now.sh/data.json';
 
   // action creators
   const getTodosFromAPI = todos => ({
@@ -28,10 +27,8 @@ const App = () => {
 
   const getTodos = async () => {
     try {
-      const {
-        data: { todos },
-      } = await axios.get(endpoint);
-      dispatch(getTodosFromAPI(todos));
+      const result = await axios.get(todosEndpoint);
+      dispatch(getTodosFromAPI(result.data));
     } catch (err) {
       throw new Error(`Error fetching data: ${err}`);
     }
