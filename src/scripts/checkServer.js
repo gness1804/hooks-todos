@@ -1,8 +1,9 @@
 const { promisify } = require('util');
 const { exec } = require('child_process');
+const { todosEndpoint } = require('../api');
 
 const promisifiedExec = promisify(exec);
-const url = 'http://localhost:3777/todos';
+const url = `${todosEndpoint}`;
 
 promisifiedExec(`curl ${url}`)
   .then(res => {
