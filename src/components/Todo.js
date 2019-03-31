@@ -36,9 +36,7 @@ const Todo = ({ todo }) => {
   };
 
   const toggleTodoHandler = async (id, complete) => {
-    const response = await axios.put(`${todosEndpoint}/${id}`, {
-      ...todo,
-      id,
+    const response = await axios.patch(`${todosEndpoint}/${id}`, {
       complete: !complete,
     });
     dispatch(toggleTodo(response.data));
