@@ -57,8 +57,8 @@ const TodoForm = () => {
       text,
       complete: false,
     };
-    await axios.post(`${todosEndpoint}`, newTodo);
-    dispatch(addTodo(newTodo));
+    const response = await axios.post(`${todosEndpoint}`, newTodo);
+    dispatch(addTodo(response.data));
   };
 
   const handleSubmit = event => {
