@@ -24,6 +24,11 @@ const assignCurrentTodoAction = {
   todo: {},
 };
 
+const getTodosFromAPIAction = {
+  type: 'GET_TODOS_FROM_API',
+  todos: [],
+};
+
 // prettier-ignore
 export {
   toggleAction,
@@ -31,4 +36,5 @@ export {
   addAction,
   editAction,
   assignCurrentTodoAction,
+  getTodosFromAPIAction,
 };
