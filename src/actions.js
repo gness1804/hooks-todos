@@ -1,6 +1,6 @@
 const toggleAction = {
   type: 'TOGGLE_TODO',
-  id: undefined,
+  todo: {},
 };
 
 const deleteAction = {

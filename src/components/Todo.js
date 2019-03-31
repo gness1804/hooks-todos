@@ -14,9 +14,9 @@ const Todo = ({ todo }) => {
   const { dispatch } = useContext(TodosContext);
 
   // action creators
-  const toggleTodo = id => ({
+  const toggleTodo = _todo => ({
     ...toggleAction,
-    id,
+    todo: _todo,
   });
 
   const deleteTodo = id => ({
@@ -36,12 +36,12 @@ const Todo = ({ todo }) => {
   };
 
   const toggleTodoHandler = async (id, complete) => {
-    await axios.put(`${todosEndpoint}/${id}`, {
+    const response = await axios.put(`${todosEndpoint}/${id}`, {
       ...todo,
       id,
       complete: !complete,
     });
-    dispatch(toggleTodo(id));
+    dispatch(toggleTodo(response.data));
   };
 
   return (

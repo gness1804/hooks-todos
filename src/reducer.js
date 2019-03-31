@@ -8,7 +8,7 @@ const reducer = (state, action) => {
     case 'TOGGLE_TODO': {
       /* eslint-disable no-confusing-arrow */
       const newTodos = state.todos.map(todo =>
-        todo.id === action.id ? { ...todo, complete: !todo.complete } : todo,
+        todo.id === action.todo.id ? action.todo : todo,
       );
       return Object.assign({}, state, {
         todos: newTodos,
