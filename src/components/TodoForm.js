@@ -1,8 +1,10 @@
 /* eslint-disable-next-line no-unused-vars */
 import React, { useContext, useState, useEffect } from 'react';
 import uuid from 'uuid';
+import axios from 'axios';
 import TodosContext from '../context';
 import { addAction, editAction } from '../actions';
+import { todosEndpoint } from '../api';
 
 const TodoForm = () => {
   const {
@@ -24,13 +26,9 @@ const TodoForm = () => {
   }, [todos]);
 
   // action creators
-  const addTodo = () => ({
+  const addTodo = todo => ({
     ...addAction,
-    todo: {
-      id: uuid.v4(),
-      text,
-      complete: false,
-    },
+    todo,
   });
 
   const editTodo = () => ({
@@ -53,6 +51,16 @@ const TodoForm = () => {
     return false;
   };
 
+  const handleAddTodo = async () => {
+    const newTodo = {
+      id: uuid.v4(),
+      text,
+      complete: false,
+    };
+    await axios.post(`${todosEndpoint}`, newTodo);
+    dispatch(addTodo(newTodo));
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
     if (!text) {
@@ -67,7 +75,7 @@ const TodoForm = () => {
     if (Object.keys(currentTodo).length) {
       dispatch(editTodo());
     } else {
-      dispatch(addTodo());
+      handleAddTodo();
     }
     setText('');
   };
