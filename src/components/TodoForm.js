@@ -31,10 +31,9 @@ const TodoForm = () => {
     todo,
   });
 
-  const editTodo = () => ({
+  const editTodo = todo => ({
     ...editAction,
-    text,
-    id: currentTodo.id,
+    todo,
   });
 
   // regular methods
@@ -62,10 +61,10 @@ const TodoForm = () => {
   };
 
   const handleEditTodo = async () => {
-    await axios.patch(`${todosEndpoint}/${currentTodo.id}`, {
+    const response = await axios.patch(`${todosEndpoint}/${currentTodo.id}`, {
       text,
     });
-    dispatch(editTodo());
+    dispatch(editTodo(response.data));
   };
 
   const handleSubmit = event => {

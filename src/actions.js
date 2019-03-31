@@ -15,8 +15,7 @@ const addAction = {
 
 const editAction = {
   type: 'EDIT_TODO',
-  text: '',
-  id: undefined,
+  todo: {},
 };
 
 const assignCurrentTodoAction = {
