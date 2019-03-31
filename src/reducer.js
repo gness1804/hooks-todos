@@ -1,5 +1,10 @@
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'GET_TODOS_FROM_API': {
+      return Object.assign({}, state, {
+        todos: action.todos,
+      });
+    }
     case 'TOGGLE_TODO': {
       /* eslint-disable no-confusing-arrow */
       const newTodos = state.todos.map(todo =>
