@@ -8,6 +8,7 @@ import {
   deleteAction,
   assignCurrentTodoAction,
 } from '../actions';
+import { todosEndpoint } from '../api';
 
 const Todo = ({ todo }) => {
   const { dispatch } = useContext(TodosContext);
@@ -30,8 +31,7 @@ const Todo = ({ todo }) => {
 
   // regular methods
   const deleteTodoHandler = async id => {
-    const endpoint = 'https://hooks-api.grahamnessler.now.sh/data.json';
-    await axios.delete(`${endpoint}/${id}`);
+    await axios.delete(`${todosEndpoint}/${id}`);
     dispatch(deleteTodo(id));
   };
 
